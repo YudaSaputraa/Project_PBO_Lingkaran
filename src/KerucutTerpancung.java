@@ -1,4 +1,5 @@
 public class KerucutTerpancung extends Kerucut {
+<<<<<<< HEAD
     private double rkecil;
 
     public KerucutTerpancung(double r, double t, double rkecil) {
@@ -20,4 +21,18 @@ public class KerucutTerpancung extends Kerucut {
     public double hitungVolumeKerucut() {
         return (1.0 / 3.0) * Math.PI * t * (getR(r) * rkecil + Math.pow(getR(r), 2) + Math.pow(rkecil, 2));
     }
+=======
+    double b;
+
+    public KerucutTerpancung(float r, double t, double b) {
+        super(r, t);
+        this.b = b;
+
+    }
+
+    public void luasKerucutTerpancung() {
+
+    }
+
+>>>>>>> 6ea986c (add class)
 }
