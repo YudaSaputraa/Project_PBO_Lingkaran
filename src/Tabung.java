@@ -1,17 +1,17 @@
 public class Tabung extends Lingkaran {
     private double t = 0;
 
-    public Tabung(float r, double t) {
+    public Tabung(double r, double t) {
         super(r);
         this.t = t;
 
     }
 
     public double hitungLuasTabung() {
-        return super.menghitungKelilingLingkaran(kelilingLingkaran) * (this.r + t);
+        return super.kelilingLingkaran * (getR(r) + t);
     }
 
     public double hitungVolumeTabung() {
-        return super.menghitungLuasLingkaran(luasLingkaran) * t;
+        return super.luasLingkaran * t;
     }
 }
