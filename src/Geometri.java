@@ -1,8 +1,8 @@
 public class Geometri {
     public static void main(String[] args) {
 
-        Bola bela = new Bola(10);
-        System.out.println(bela.hitungLuasBola());
-        System.out.println(bela.hitungVolumeBola());
+        Tembereng tt = new Tembereng(10, 10);
+        System.out.println(tt.hitungTinggiTembereng());
+        System.out.println(tt.hitungVolumeTemberengBola());
     }
 }
