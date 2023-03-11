@@ -17,6 +17,6 @@ public class Kerucut extends Lingkaran {
     }
 
     public double hitungVolumeKerucut() {
-        return 0.33 * super.luasLingkaran * t;
+        return (1.0 / 3.0) * super.luasLingkaran * t;
     }
 }

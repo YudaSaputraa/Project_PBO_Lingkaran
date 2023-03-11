@@ -10,7 +10,7 @@ public class Bola extends Lingkaran {
     }
 
     public double hitungVolumeBola() {
-        return 1.33 * super.luasLingkaran;
+        return (4.0 / 3.0) * super.luasLingkaran * getR(r);
     }
 
 }
