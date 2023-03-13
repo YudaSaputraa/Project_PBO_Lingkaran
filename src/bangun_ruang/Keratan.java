@@ -1,3 +1,4 @@
+package bangun_ruang;
 public class Keratan extends Bola {
 
     private double jrkPusat;

@@ -1,3 +1,5 @@
+package bangun_ruang;
+
 public class Tembereng extends Bola {
     private double jrkBidang;
     private double tinggiTembereng;

@@ -1,3 +1,4 @@
+package bangun_ruang;
 public class Bola extends Lingkaran {
 
     public Bola(double r) {

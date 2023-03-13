@@ -1,3 +1,4 @@
+package bangun_ruang;
 public class Kerucut extends Lingkaran {
     protected double t;
     protected double s;

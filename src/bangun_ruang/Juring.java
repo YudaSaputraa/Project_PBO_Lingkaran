@@ -1,3 +1,5 @@
+package bangun_ruang;
+
 public class Juring extends Bola {
 
     private double sudut;
