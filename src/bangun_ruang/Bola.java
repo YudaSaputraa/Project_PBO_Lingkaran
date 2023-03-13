@@ -9,12 +9,12 @@ public class Bola extends Lingkaran {
     }
 
     public double hitungLuasBola() {
-        return 4 * super.luasLingkaran;
+        return 4 * super.getHitungLuas();
 
     }
 
     public double hitungVolumeBola() {
-        return (4.0 / 3.0) * super.luasLingkaran * getR(r);
+        return (4.0 / 3.0) * super.getHitungKeliling() * getR(r);
     }
 
 }

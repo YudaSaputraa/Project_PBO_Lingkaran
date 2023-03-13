@@ -12,11 +12,11 @@ public class Tabung extends Lingkaran {
     }
 
     public double hitungLuasTabung() {
-        return super.kelilingLingkaran * (getR(r) + tinggi);
+        return super.getHitungKeliling() * (getR(r) + tinggi);
     }
 
     public double hitungVolumeTabung() {
-        return super.luasLingkaran * tinggi;
+        return super.getHitungLuas() * tinggi;
     }
 
     public double getTinggi() {

@@ -17,11 +17,11 @@ public class Kerucut extends Lingkaran {
     }
 
     public double hitungLuasKerucut() {
-        return super.luasLingkaran + (Math.PI * getR(r) * hitungSisiMiring());
+        return super.getHitungLuas() + (Math.PI * getR(r) * hitungSisiMiring());
     }
 
     public double hitungVolumeKerucut() {
-        return (1.0 / 3.0) * super.luasLingkaran * tinggi;
+        return (1.0 / 3.0) * super.getHitungLuas() * tinggi;
     }
 
     public double getTinggi() {

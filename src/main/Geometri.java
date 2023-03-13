@@ -29,7 +29,7 @@ public class Geometri {
             switch (pilih) {
                 case 0:
                     System.exit(0);
-
+                    break;
                 case 1:
                     menuLingkaran();
                     break;
@@ -72,7 +72,8 @@ public class Geometri {
         BangunDatar lingkaran = new Lingkaran(jariJari);
         lingkaran.setR(jariJari);
         System.out.println("\nOUTPUT");
-        System.out.println("Luas Lingkaran : " + lingkaran.hitungLuas((double) jariJari));
+        System.out.println("Luas Lingkaran : " + lingkaran.getHitungLuas());
+        System.out.println("keliling Lingkaran : " + lingkaran.getHitungKeliling());
     }
 
     static void menuTabung() {
