@@ -1,7 +1,16 @@
 package bangun_ruang;
+
 public class KerucutTerpancung extends Kerucut {
 
     private double rkecil;
+
+    public double getRkecil() {
+        return rkecil;
+    }
+
+    public void setRkecil(double rkecil) {
+        this.rkecil = rkecil;
+    }
 
     public KerucutTerpancung(double r, double t, double rkecil) {
         super(r, t);
@@ -10,8 +19,8 @@ public class KerucutTerpancung extends Kerucut {
 
     @Override
     public double hitungSisiMiring() {
-        s = Math.sqrt(Math.pow(getR(r) - this.rkecil, 2) + Math.pow(t, 2));
-        return s;
+        sisiMiring = Math.sqrt(Math.pow(getR(r) - this.rkecil, 2) + Math.pow(tinggi, 2));
+        return sisiMiring;
     }
 
     public double hitungSelimutKerucut() {
@@ -20,19 +29,7 @@ public class KerucutTerpancung extends Kerucut {
 
     @Override
     public double hitungVolumeKerucut() {
-        return (1.0 / 3.0) * Math.PI * t * (getR(r) * rkecil + Math.pow(getR(r), 2) + Math.pow(rkecil, 2));
-    }
-
-    double b;
-
-    public KerucutTerpancung(float r, double t, double b) {
-        super(r, t);
-        this.b = b;
-
-    }
-
-    public void luasKerucutTerpancung() {
-
+        return (1.0 / 3.0) * Math.PI * tinggi * (getR(r) * rkecil + Math.pow(getR(r), 2) + Math.pow(rkecil, 2));
     }
 
 }

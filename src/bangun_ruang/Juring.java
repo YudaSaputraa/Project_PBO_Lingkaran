@@ -3,6 +3,7 @@ package bangun_ruang;
 public class Juring extends Bola {
 
     private double sudut;
+    private double theta;
 
     public Juring(double r, double sudut) {
         super(r);
@@ -17,13 +18,16 @@ public class Juring extends Bola {
         return sudut;
     }
 
-    /*
-     * public double hitungLuasJuring() {
-     * return (getSudut(sudut) / 360.0) * super.hitungLuasBola();
-     * }
-     * 
-     * public double hitungVolumeJuring() {
-     * return (getSudut(sudut) / 360.0) * super.hitungVolumeBola();
-     * }
-     */
+    public double getTheta() {
+        theta = Math.toRadians(getSudut(sudut));
+        return theta;
+    }
+
+    public double hitungVolumeJuring() {
+        return (Math.PI * (Math.pow(getR(r), 3)) * getTheta());
+    }
+
+    public double hitungLuasJuring() {
+        return (Math.pow(getR(r), 2) * getTheta()) / 2;
+    }
 }

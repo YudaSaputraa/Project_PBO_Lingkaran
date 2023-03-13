@@ -1,18 +1,20 @@
 package bangun_ruang;
-public class Tabung extends Lingkaran {
-    private double t = 0;
+import bangun_datar.*;
 
-    public Tabung(double r, double t) {
+public class Tabung extends Lingkaran {
+    private double tinggi;
+
+    public Tabung(double r, double tinggi) {
         super(r);
-        this.t = t;
+        this.tinggi = tinggi;
 
     }
 
     public double hitungLuasTabung() {
-        return super.kelilingLingkaran * (getR(r) + t);
+        return super.kelilingLingkaran * (getR(r) + tinggi);
     }
 
     public double hitungVolumeTabung() {
-        return super.luasLingkaran * t;
+        return super.luasLingkaran * tinggi;
     }
 }

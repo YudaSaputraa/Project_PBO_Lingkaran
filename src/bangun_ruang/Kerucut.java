@@ -1,16 +1,19 @@
 package bangun_ruang;
-public class Kerucut extends Lingkaran {
-    protected double t;
-    protected double s;
 
-    public Kerucut(double r, double t) {
+import bangun_datar.*;
+
+public class Kerucut extends Lingkaran {
+    protected double tinggi;
+    protected double sisiMiring;
+
+    public Kerucut(double r, double tinggi) {
         super(r);
-        this.t = t;
+        this.tinggi = tinggi;
     }
 
     public double hitungSisiMiring() {
-        s = Math.sqrt(Math.pow(getR(r), 2) + Math.pow(t, 2));
-        return s;
+        sisiMiring = Math.sqrt(Math.pow(getR(r), 2) + Math.pow(tinggi, 2));
+        return sisiMiring;
     }
 
     public double hitungLuasKerucut() {
@@ -18,6 +21,18 @@ public class Kerucut extends Lingkaran {
     }
 
     public double hitungVolumeKerucut() {
-        return (1.0 / 3.0) * super.luasLingkaran * t;
+        return (1.0 / 3.0) * super.luasLingkaran * tinggi;
+    }
+
+    public double getTinggi() {
+        return tinggi;
+    }
+
+    public void setTinggi(double tinggi) {
+        this.tinggi = tinggi;
+    }
+
+    public double getSisiMiring() {
+        return sisiMiring;
     }
 }

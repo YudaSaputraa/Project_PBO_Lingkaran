@@ -1,38 +1,38 @@
 package bangun_ruang;
+
 public class Keratan extends Bola {
 
-    private double jrkPusat;
-    private double jrkTepi;
+    private double rAtas;
+    private double tinggi;
 
-    public Keratan(double r, double jrkPusat, double jrkTepi) {
+    public Keratan(double r, double rAtas, double tinggi) {
         super(r);
-        this.jrkPusat = jrkPusat;
-        this.jrkTepi = jrkTepi;
+        this.rAtas = rAtas;
+        this.tinggi = tinggi;
     }
 
-    public void setJrkPusat(double jrkPusat) {
-        this.jrkPusat = jrkPusat;
+    public void setrAtas(double rAtas) {
+        this.rAtas = rAtas;
     }
 
-    public void setJrkTepi(double jrkTepi) {
-        this.jrkTepi = jrkTepi;
+    public void setTinggi(double tinggi) {
+        this.tinggi = tinggi;
     }
 
-    public double getJrkPusat(double jrkPusat) {
-        return jrkPusat;
+    public double getrAtas(double rAtas) {
+        return rAtas;
     }
 
-    public double getJrkTepi(double jrkTepi) {
-        return jrkTepi;
+    public double getTinggi(double tinggi) {
+        return tinggi;
     }
 
-    public double hitungLuasPermukaanKeratanBola() {
-        return (Math.PI * Math.pow(getJrkTepi(jrkTepi), 2)) + 2 * Math.PI * getR(r) * getJrkPusat(jrkPusat);
+    public double hitungLuasKeratanBola() {
+        return (Math.PI * Math.pow(getTinggi(tinggi), 2)) + 2 * Math.PI * getR(r) * getrAtas(rAtas);
     }
 
     public double hitungVolumeKeratanBola() {
-        return (Math.PI * Math.pow(getJrkPusat(jrkPusat), 3)
-                * (3 * Math.pow(getJrkTepi(jrkTepi), 2) + Math.pow(getJrkPusat(jrkPusat), 2)))
-                / (6 * Math.pow(2 * getJrkPusat(jrkPusat), 3));
+        return 1.0 / 6.0 * Math.PI * getTinggi(tinggi) * (3 * Math.pow(getR(r), 2)
+                + 3 * Math.pow(getrAtas(rAtas), 2) + Math.pow(getTinggi(tinggi), 2));
     }
 }

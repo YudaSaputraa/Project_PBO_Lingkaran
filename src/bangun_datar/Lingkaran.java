@@ -1,4 +1,5 @@
-package bangun_ruang;
+package bangun_datar;
+
 public class Lingkaran {
 
     public double kelilingLingkaran;
@@ -7,18 +8,28 @@ public class Lingkaran {
 
     public Lingkaran(double r) {
         this.r = r;
-        menghitungKelilingLingkaran(r);
-        menghitungLuasLingkaran(r);
+        hitungKeliling(r);
+        hitungLuas(r);
     }
 
-    public double menghitungKelilingLingkaran(double r) {
+    public double hitungKeliling(double r) {
         kelilingLingkaran = 2 * Math.PI * this.r;
         return kelilingLingkaran;
     }
 
-    public double menghitungLuasLingkaran(double r) {
+    public int hitungKeliling() {
+        kelilingLingkaran = 2 * Math.PI * this.r;
+        return (int) kelilingLingkaran;
+    }
+
+    public double hitungLuas(double r) {
         luasLingkaran = Math.PI * this.r * this.r;
         return luasLingkaran;
+    }
+
+    public int hitungLuas(int r) {
+        luasLingkaran = Math.PI * this.r * this.r;
+        return (int) luasLingkaran;
     }
 
     public void setR(double r) {
