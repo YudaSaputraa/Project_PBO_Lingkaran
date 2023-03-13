@@ -1,4 +1,5 @@
 package bangun_ruang;
+
 import bangun_datar.*;
 
 public class Tabung extends Lingkaran {
@@ -16,5 +17,13 @@ public class Tabung extends Lingkaran {
 
     public double hitungVolumeTabung() {
         return super.luasLingkaran * tinggi;
+    }
+
+    public double getTinggi() {
+        return tinggi;
+    }
+
+    public void setTinggi(double tinggi) {
+        this.tinggi = tinggi;
     }
 }

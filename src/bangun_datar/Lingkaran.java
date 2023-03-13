@@ -1,6 +1,6 @@
 package bangun_datar;
 
-public class Lingkaran {
+public class Lingkaran implements BangunDatar {
 
     public double kelilingLingkaran;
     public double luasLingkaran;
@@ -12,6 +12,7 @@ public class Lingkaran {
         hitungLuas(r);
     }
 
+    @Override
     public double hitungKeliling(double r) {
         kelilingLingkaran = 2 * Math.PI * this.r;
         return kelilingLingkaran;
@@ -22,6 +23,7 @@ public class Lingkaran {
         return (int) kelilingLingkaran;
     }
 
+    @Override
     public double hitungLuas(double r) {
         luasLingkaran = Math.PI * this.r * this.r;
         return luasLingkaran;

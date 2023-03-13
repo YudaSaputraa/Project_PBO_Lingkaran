@@ -1,9 +1,7 @@
 package main;
 
 import bangun_ruang.*;
-
 import java.util.Scanner;
-
 import bangun_datar.*;
 
 public class Geometri {
@@ -14,7 +12,7 @@ public class Geometri {
         int pilih, back;
 
         do {
-            System.out.println("--- PROGAM BANGUN RUANG DAN BANGUN DATAR ---");
+            System.out.println("\n--- PROGRAM BANGUN RUANG DAN BANGUN DATAR ---");
             System.out.println("MENU : ");
             System.out.println("1. Lingkaran");
             System.out.println("2. Tabung");
@@ -71,7 +69,7 @@ public class Geometri {
         System.out.println("-- LINGKARAN --");
         System.out.print("Input Jari - Jari Lingkaran : ");
         double jariJari = input.nextDouble();
-        Lingkaran lingkaran = new Lingkaran(jariJari);
+        BangunDatar lingkaran = new Lingkaran(jariJari);
         lingkaran.setR(jariJari);
         System.out.println("\nOUTPUT");
         System.out.println("Luas Lingkaran : " + lingkaran.hitungLuas((double) jariJari));
@@ -85,7 +83,7 @@ public class Geometri {
         double tinggi = input.nextDouble();
         Tabung tabung = new Tabung(jariAlasTabung, tinggi);
         tabung.setR(jariAlasTabung);
-        tabung.setR(tinggi);
+        tabung.setTinggi(tinggi);
         System.out.println("\nOUTPUT");
         System.out.println("Luas Tabung : " + tabung.hitungLuasTabung());
         System.out.println("Volume Tabung : " + tabung.hitungVolumeTabung());
@@ -103,7 +101,7 @@ public class Geometri {
         System.out.println("\nOUTPUT");
         System.out.println("Luas Kerucut : " + kerucut.hitungLuasKerucut());
         System.out.println("Volume Kerucut : " + kerucut.hitungVolumeKerucut());
-        System.out.println("Dengan Sisi Miring Tabung adalah " + kerucut.getSisiMiring());
+        System.out.println("Dengan Sisi Miring Kerucut adalah " + kerucut.getSisiMiring());
     }
 
     static void menuKerucutTerpancung() {
