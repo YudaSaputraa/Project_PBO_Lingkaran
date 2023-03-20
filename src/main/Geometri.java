@@ -87,7 +87,7 @@ public class Geometri {
         System.out.print("Input Tinggi:  ");
         double tinggi = input.nextDouble();
 
-        Lingkaran tabung = new Tabung(jariAlasTabung);
+        Lingkaran tabung = new Tabung(jariAlasTabung, tinggi);
         tabung.setR(jariAlasTabung);
         System.out.println("\nOUTPUT");
         System.out.println("Luas Tabung 1 : "

@@ -6,8 +6,10 @@ public class Tabung extends Lingkaran {
 
     private double tinggi;
 
-    public Tabung(double r) {
+    public Tabung(double r, double tinggi) {
         super(r);
+        this.tinggi = tinggi;
+
         hitungLuasTabung(r);
         hitungVolumeTabung(r);
 
@@ -30,7 +32,6 @@ public class Tabung extends Lingkaran {
     }
 
     public double hitungVolumeTabung(double r) {
-
         volumeTabung = super.luasLingkaran * getTinggi();
         return volumeTabung;
     }
