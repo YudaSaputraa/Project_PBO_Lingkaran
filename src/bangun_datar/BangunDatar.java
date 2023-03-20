@@ -22,10 +22,6 @@ public interface BangunDatar {
         return 0;
     }
 
-    public double getHitungKeliling();
-
-    public double getHitungLuas();
-
     public void setR(double jariJari);
 
 }

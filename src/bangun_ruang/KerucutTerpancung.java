@@ -19,7 +19,7 @@ public class KerucutTerpancung extends Kerucut {
 
     @Override
     public double hitungSisiMiring() {
-        sisiMiring = Math.sqrt(Math.pow(getR(r) - this.rkecil, 2) + Math.pow(tinggi, 2));
+        sisiMiring = Math.sqrt(Math.pow(getR(r) - this.rkecil, 2) + Math.pow(super.getTinggi(), 2));
         return sisiMiring;
     }
 
@@ -29,7 +29,8 @@ public class KerucutTerpancung extends Kerucut {
 
     @Override
     public double hitungVolumeKerucut() {
-        return (1.0 / 3.0) * Math.PI * tinggi * (getR(r) * rkecil + Math.pow(getR(r), 2) + Math.pow(rkecil, 2));
+        return (1.0 / 3.0) * Math.PI * super.getTinggi()
+                * (getR(r) * rkecil + Math.pow(getR(r), 2) + Math.pow(rkecil, 2));
     }
 
 }

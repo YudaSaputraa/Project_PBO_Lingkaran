@@ -3,20 +3,36 @@ package bangun_ruang;
 import bangun_datar.*;
 
 public class Tabung extends Lingkaran {
+
     private double tinggi;
 
-    public Tabung(double r, double tinggi) {
+    public Tabung(double r) {
         super(r);
-        this.tinggi = tinggi;
+        hitungLuasTabung(r);
+        hitungVolumeTabung(r);
 
     }
 
     public double hitungLuasTabung() {
-        return super.getHitungKeliling() * (getR(r) + tinggi);
+        luasTabung = super.kelilingLingkaran * (getR(r) + getTinggi());
+        return luasTabung;
+    }
+
+    public double hitungLuasTabung(double r) {
+        luasTabung = super.kelilingLingkaran * (getR(r) + getTinggi());
+        return luasTabung;
     }
 
     public double hitungVolumeTabung() {
-        return super.getHitungLuas() * tinggi;
+
+        volumeTabung = super.luasLingkaran * getTinggi();
+        return volumeTabung;
+    }
+
+    public double hitungVolumeTabung(double r) {
+
+        volumeTabung = super.luasLingkaran * getTinggi();
+        return volumeTabung;
     }
 
     public double getTinggi() {
@@ -26,4 +42,5 @@ public class Tabung extends Lingkaran {
     public void setTinggi(double tinggi) {
         this.tinggi = tinggi;
     }
+
 }

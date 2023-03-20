@@ -2,9 +2,12 @@ package bangun_datar;
 
 public class Lingkaran implements BangunDatar {
 
-    private double kelilingLingkaran;
-    private double luasLingkaran;
+    public double kelilingLingkaran;
+    public double luasLingkaran;
     public double r;
+    public double luasTabung, volumeTabung;
+    public double luasKerucut, volumeKerucut, sisiMiring;
+    public double luasBola, volumeBola;
 
     public Lingkaran(double r) {
         this.r = r;
@@ -17,9 +20,9 @@ public class Lingkaran implements BangunDatar {
         return kelilingLingkaran;
     }
 
-    public int hitungKeliling(int r) {
+    public double hitungKeliling() {
         kelilingLingkaran = 2 * Math.PI * this.r;
-        return (int) kelilingLingkaran;
+        return kelilingLingkaran;
     }
 
     public double hitungLuas(double r) {
@@ -27,9 +30,9 @@ public class Lingkaran implements BangunDatar {
         return luasLingkaran;
     }
 
-    public int hitungLuas(int r) {
+    public double hitungLuas() {
         luasLingkaran = Math.PI * this.r * this.r;
-        return (int) luasLingkaran;
+        return luasLingkaran;
     }
 
     public void setR(double r) {
@@ -40,14 +43,37 @@ public class Lingkaran implements BangunDatar {
         return r;
     }
 
-    @Override
-    public double getHitungKeliling() {
-        return kelilingLingkaran;
+  
+
+    public double hitungLuasTabung(double jariAlasTabung) {
+        return luasTabung;
     }
 
-    @Override
-    public double getHitungLuas() {
-        return luasLingkaran;
+    public double hitungVolumeTabung(double jariAlasTabung) {
+        return volumeTabung;
+    }
+
+    public double hitungLuasKerucut() {
+        return luasKerucut;
+    }
+
+    public double hitungVolumeKerucut() {
+        return volumeKerucut;
+    }
+
+    public double hitungSisiMiring() {
+        return sisiMiring;
+    }
+
+    public double hitungLuasBola() {
+
+        return luasBola;
+
+    }
+
+    public double hitungVolumeBola() {
+
+        return volumeBola;
     }
 
 }

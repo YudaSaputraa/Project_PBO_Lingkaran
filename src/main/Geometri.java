@@ -69,11 +69,15 @@ public class Geometri {
         System.out.println("-- LINGKARAN --");
         System.out.print("Input Jari - Jari Lingkaran : ");
         double jariJari = input.nextDouble();
-        BangunDatar lingkaran = new Lingkaran(jariJari);
+        Lingkaran lingkaran = new Lingkaran(jariJari);
         lingkaran.setR(jariJari);
         System.out.println("\nOUTPUT");
-        System.out.println("Luas Lingkaran : " + lingkaran.getHitungLuas());
-        System.out.println("keliling Lingkaran : " + lingkaran.getHitungKeliling());
+        System.out.println("Luas Lingkaran 1 : " + Math.PI * Math.pow(jariJari, 2));
+        System.out.println("Luas Lingkaran 2 : " + lingkaran.hitungLuas(jariJari));
+        System.out.println("Luas Lingkaran 3 : " + lingkaran.luasLingkaran);
+        System.out.println("keliling Lingkaran : " + 2 * Math.PI * jariJari);
+        System.out.println("keliling Lingkaran : " + lingkaran.hitungKeliling(jariJari));
+        System.out.println("keliling Lingkaran : " + lingkaran.kelilingLingkaran);
     }
 
     static void menuTabung() {
@@ -82,12 +86,17 @@ public class Geometri {
         double jariAlasTabung = input.nextDouble();
         System.out.print("Input Tinggi:  ");
         double tinggi = input.nextDouble();
-        Tabung tabung = new Tabung(jariAlasTabung, tinggi);
+
+        Lingkaran tabung = new Tabung(jariAlasTabung);
         tabung.setR(jariAlasTabung);
-        tabung.setTinggi(tinggi);
         System.out.println("\nOUTPUT");
-        System.out.println("Luas Tabung : " + tabung.hitungLuasTabung());
-        System.out.println("Volume Tabung : " + tabung.hitungVolumeTabung());
+        System.out.println("Luas Tabung 1 : "
+                + 2 * Math.PI * tabung.getR(jariAlasTabung) * (tabung.getR(jariAlasTabung) + tinggi));
+        System.out.println("Luas Tabung 2 : " + tabung.hitungLuasTabung(jariAlasTabung));
+        System.out.println("Luas Tabung 3 : " + tabung.luasTabung);
+        System.out.println("Volume Tabung 1: " + Math.PI * Math.pow(tabung.getR(jariAlasTabung), 2) * tinggi);
+        System.out.println("Volume Tabung 2: " + tabung.hitungVolumeTabung(jariAlasTabung));
+        System.out.println("Volume Tabung 3: " + tabung.volumeTabung);
     }
 
     static void menuKerucut() {
@@ -96,13 +105,17 @@ public class Geometri {
         double jariAlasKerucut = input.nextDouble();
         System.out.print("Input Tinggi : ");
         double tinggiKerucut = input.nextDouble();
-        Kerucut kerucut = new Kerucut(jariAlasKerucut, tinggiKerucut);
+        Lingkaran kerucut = new Kerucut(jariAlasKerucut, tinggiKerucut);
         kerucut.setR(jariAlasKerucut);
-        kerucut.setTinggi(tinggiKerucut);
         System.out.println("\nOUTPUT");
-        System.out.println("Luas Kerucut : " + kerucut.hitungLuasKerucut());
-        System.out.println("Volume Kerucut : " + kerucut.hitungVolumeKerucut());
-        System.out.println("Dengan Sisi Miring Kerucut adalah " + kerucut.getSisiMiring());
+        System.out.println("Luas Kerucut 1 : " + (kerucut.luasLingkaran
+                + (Math.PI * kerucut.getR(jariAlasKerucut) * kerucut.hitungSisiMiring())));
+        System.out.println("Luas Kerucut 2 : " + kerucut.hitungLuasKerucut());
+        System.out.println("Luas Kerucut 3 : " + kerucut.luasKerucut);
+        System.out.println("Volume Kerucut 1 : " + (1.0 / 3.0) * kerucut.luasLingkaran * tinggiKerucut);
+        System.out.println("Volume Kerucut 2 : " + kerucut.hitungVolumeKerucut());
+        System.out.println("Volume Kerucut 3 : " + kerucut.volumeKerucut);
+        System.out.println("Dengan Sisi Miring Kerucut adalah " + kerucut.hitungSisiMiring());
     }
 
     static void menuKerucutTerpancung() {
@@ -126,11 +139,15 @@ public class Geometri {
         System.out.println("-- BOLA --");
         System.out.print("Input Jari- Jari Bola : ");
         double jariBola = input.nextDouble();
-        Bola bola = new Bola(jariBola);
+        Lingkaran bola = new Bola(jariBola);
         bola.setR(jariBola);
         System.out.println("\nOUTOPUT");
-        System.out.println("Luas Bola : " + bola.hitungLuasBola());
-        System.out.println("Volume Bola : " + bola.hitungVolumeBola());
+        System.out.println("Luas Bola 1 : " + 4.0 * (Math.PI * (jariBola * jariBola)));
+        System.out.println("Luas Bola 2 : " + bola.hitungLuasBola());
+        System.out.println("Luas Bola 3 : " + bola.luasBola);
+        System.out.println("Volume Bola 1 : " + (4.0 / 3.0) * (Math.PI * jariBola * jariBola * jariBola));
+        System.out.println("Volume Bola 2 : " + bola.hitungVolumeBola());
+        System.out.println("Volume Bola 3 : " + bola.volumeBola);
     }
 
     static void menuJuringBola() {
