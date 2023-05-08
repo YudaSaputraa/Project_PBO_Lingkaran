@@ -1,6 +1,7 @@
 package main;
 
 import bangun_ruang.*;
+
 import java.util.Scanner;
 import bangun_datar.*;
 
@@ -66,18 +67,26 @@ public class Geometri {
     }
 
     static void menuLingkaran() {
+
         System.out.println("-- LINGKARAN --");
-        System.out.print("Input Jari - Jari Lingkaran : ");
-        double jariJari = input.nextDouble();
-        Lingkaran lingkaran = new Lingkaran(jariJari);
-        lingkaran.setR(jariJari);
-        System.out.println("\nOUTPUT");
-        System.out.println("Luas Lingkaran 1 : " + Math.PI * Math.pow(jariJari, 2));
-        System.out.println("Luas Lingkaran 2 : " + lingkaran.hitungLuas(jariJari));
-        System.out.println("Luas Lingkaran 3 : " + lingkaran.luasLingkaran);
-        System.out.println("keliling Lingkaran : " + 2 * Math.PI * jariJari);
-        System.out.println("keliling Lingkaran : " + lingkaran.hitungKeliling(jariJari));
-        System.out.println("keliling Lingkaran : " + lingkaran.kelilingLingkaran);
+        try {
+            System.out.print("Input Jari - Jari Lingkaran : ");
+            double jariJari = input.nextDouble();
+            Lingkaran lingkaran = new Lingkaran(jariJari);
+            lingkaran.setR(jariJari);
+            if (jariJari < 0) {
+                throw new Exception("Jari-Jari tidak boleh negatif");
+            }
+            System.out.println("\nOUTPUT");
+            System.out.println("Luas Lingkaran 1 : " + Math.PI * Math.pow(jariJari, 2));
+            System.out.println("Luas Lingkaran 2 : " + lingkaran.hitungLuas(jariJari));
+            System.out.println("Luas Lingkaran 3 : " + lingkaran.luasLingkaran);
+            System.out.println("keliling Lingkaran : " + 2 * Math.PI * jariJari);
+            System.out.println("keliling Lingkaran : " + lingkaran.hitungKeliling(jariJari));
+            System.out.println("keliling Lingkaran : " + lingkaran.kelilingLingkaran);
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+        }
     }
 
     static void menuTabung() {
@@ -110,10 +119,10 @@ public class Geometri {
         System.out.println("\nOUTPUT");
         System.out.println("Luas Kerucut 1 : " + (kerucut.luasLingkaran
                 + (Math.PI * kerucut.getR(jariAlasKerucut) * kerucut.hitungSisiMiring())));
-        System.out.println("Luas Kerucut 2 : " + kerucut.hitungLuasKerucut());
+        System.out.println("Luas Kerucut 2 : " + kerucut.hitungLuasKerucut(jariAlasKerucut));
         System.out.println("Luas Kerucut 3 : " + kerucut.luasKerucut);
         System.out.println("Volume Kerucut 1 : " + (1.0 / 3.0) * kerucut.luasLingkaran * tinggiKerucut);
-        System.out.println("Volume Kerucut 2 : " + kerucut.hitungVolumeKerucut());
+        System.out.println("Volume Kerucut 2 : " + kerucut.hitungVolumeKerucut(jariAlasKerucut));
         System.out.println("Volume Kerucut 3 : " + kerucut.volumeKerucut);
         System.out.println("Dengan Sisi Miring Kerucut adalah " + kerucut.hitungSisiMiring());
     }
@@ -143,10 +152,10 @@ public class Geometri {
         bola.setR(jariBola);
         System.out.println("\nOUTOPUT");
         System.out.println("Luas Bola 1 : " + 4.0 * (Math.PI * (jariBola * jariBola)));
-        System.out.println("Luas Bola 2 : " + bola.hitungLuasBola());
+        System.out.println("Luas Bola 2 : " + bola.hitungLuasBola(jariBola));
         System.out.println("Luas Bola 3 : " + bola.luasBola);
         System.out.println("Volume Bola 1 : " + (4.0 / 3.0) * (Math.PI * jariBola * jariBola * jariBola));
-        System.out.println("Volume Bola 2 : " + bola.hitungVolumeBola());
+        System.out.println("Volume Bola 2 : " + bola.hitungVolumeBola(jariBola));
         System.out.println("Volume Bola 3 : " + bola.volumeBola);
     }
 

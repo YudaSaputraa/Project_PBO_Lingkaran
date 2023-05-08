@@ -16,7 +16,18 @@ public class Bola extends Lingkaran {
 
     }
 
+    public double hitungLuasBola(double r) {
+        luasBola = 4.0 * super.luasLingkaran;
+        return luasBola;
+
+    }
+
     public double hitungVolumeBola() {
+        volumeBola = (4.0 / 3.0) * super.luasLingkaran * getR(r);
+        return volumeBola;
+    }
+
+    public double hitungVolumeBola(double r) {
         volumeBola = (4.0 / 3.0) * super.luasLingkaran * getR(r);
         return volumeBola;
     }

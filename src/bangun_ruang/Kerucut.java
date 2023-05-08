@@ -23,8 +23,16 @@ public class Kerucut extends Lingkaran {
         luasKerucut = super.luasLingkaran + (Math.PI * getR(r) * hitungSisiMiring());
         return luasKerucut;
     }
+    public double hitungLuasKerucut(double r) {
+        luasKerucut = super.luasLingkaran + (Math.PI * getR(r) * hitungSisiMiring());
+        return luasKerucut;
+    }
 
     public double hitungVolumeKerucut() {
+        volumeKerucut = (1.0 / 3.0) * super.luasLingkaran * getTinggi();
+        return volumeKerucut;
+    }
+    public double hitungVolumeKerucut(double r) {
         volumeKerucut = (1.0 / 3.0) * super.luasLingkaran * getTinggi();
         return volumeKerucut;
     }

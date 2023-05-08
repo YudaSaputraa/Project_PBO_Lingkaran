@@ -43,14 +43,28 @@ public class Lingkaran implements BangunDatar {
         return r;
     }
 
-  
-
     public double hitungLuasTabung(double jariAlasTabung) {
         return luasTabung;
     }
 
     public double hitungVolumeTabung(double jariAlasTabung) {
         return volumeTabung;
+    }
+
+    public double hitungVolumeBola(double jariJariBola) {
+        return volumeBola;
+    }
+
+    public double hitungLuasBola(double jariJariBola) {
+        return luasBola;
+    }
+
+    public double hitungLuasKerucut(double jariJariKecurut) {
+        return luasKerucut;
+    }
+
+    public double hitungVolumeKerucut(double jariJariKecurut) {
+        return volumeKerucut;
     }
 
     public double hitungLuasKerucut() {
