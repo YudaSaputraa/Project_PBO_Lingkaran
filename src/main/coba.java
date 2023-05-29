@@ -1,64 +1,54 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.Scanner;
 
 public class coba {
-    private static final int DATA_SIZE = 1000;
-    private static final int THREAD_COUNT = 4;
-
     public static void main(String[] args) {
-        List<Integer> data = generateData(DATA_SIZE);
-        List<ProcessingThread> threads = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
 
-        // Membagi data menjadi sejumlah thread yang akan diproses
-        int dataSizePerThread = DATA_SIZE / THREAD_COUNT;
-        for (int i = 0; i < THREAD_COUNT; i++) {
-            int startIndex = i * dataSizePerThread;
-            int endIndex = (i + 1) * dataSizePerThread;
-            List<Integer> threadData = data.subList(startIndex, endIndex);
-            ProcessingThread thread = new ProcessingThread(threadData);
-            threads.add(thread);
-        }
+        System.out.print("Masukkan waktu masuk (HH:mm): ");
+        String waktuMasukStr = scanner.nextLine();
 
-        // Memulai semua thread untuk memproses data secara paralel
-        for (ProcessingThread thread : threads) {
-            thread.start();
-        }
+        System.out.print("Masukkan waktu keluar (HH:mm): ");
+        String waktuKeluarStr = scanner.nextLine();
 
-        // Menunggu semua thread selesai
-        for (ProcessingThread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        // Membuat objek Date untuk waktu masuk
+        Date waktuMasuk = parseDate(waktuMasukStr);
 
-        System.out.println("Proses selesai!");
+        // Membuat objek Date untuk waktu keluar
+        Date waktuKeluar = parseDate(waktuKeluarStr);
+
+        // Menghitung selisih waktu dalam milidetik
+        long selisihMillis = waktuKeluar.getTime() - waktuMasuk.getTime();
+
+        // Menghitung durasi parkir dalam jam
+        int durasiJam = (int) (selisihMillis / (1000 * 60 * 60));
+
+        // Menghitung biaya parkir
+        int biayaDasar = 5000; // Biaya parkir dasar per jam
+        int totalBiaya = biayaDasar * durasiJam;
+
+        System.out.println("Total biaya parkir: Rp. " + totalBiaya);
     }
 
-    private static List<Integer> generateData(int size) {
-        List<Integer> data = new ArrayList<>();
-        for (int i = 1; i <= size; i++) {
-            data.add(i);
-        }
-        return data;
-    }
+    // Metode untuk mengubah string menjadi objek Date dengan format HH:mm
+    private static Date parseDate(String waktuStr) {
+        try {
+            String[] waktuArr = waktuStr.split(":");
+            int jam = Integer.parseInt(waktuArr[0]);
+            int menit = Integer.parseInt(waktuArr[1]);
 
-    private static class ProcessingThread extends Thread {
-        private List<Integer> data;
+            Date waktu = new Date();
+            waktu.setHours(jam);
+            waktu.setMinutes(menit);
 
-        public ProcessingThread(List<Integer> data) {
-            this.data = data;
+            return waktu;
+        } catch (Exception e) {
+            System.out.println("Format waktu tidak valid. Gunakan format HH:mm");
+            System.exit(0);
         }
 
-        @Override
-        public void run() {
-            for (Integer num : data) {
-                // Proses data di sini
-                System.out.println("Data: " + num + " - Thread: " + Thread.currentThread().getName());
-            }
-        }
+        return null;
     }
 }
