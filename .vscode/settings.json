@@ -3,6 +3,7 @@
   "java.project.outputPath": "bin",
   "java.project.referencedLibraries": [
     "lib/**/*.jar",
-    "d:\\UPNVY\\SEMESTER IV\\Praktikum PBO\\TUGAS\\projek-akhir-prak-pbo-2022-2\\libs\\mysql-connector-j-8.0.33.jar"
+    "d:\\UPNVY\\SEMESTER IV\\Praktikum PBO\\TUGAS\\projek-akhir-prak-pbo-2022-2\\libs\\mysql-connector-j-8.0.33.jar",
+    "d:\\mysql-connector-j-8.0.33.jar"
   ]
 }
