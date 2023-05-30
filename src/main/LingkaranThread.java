@@ -46,7 +46,6 @@ public class LingkaranThread implements Runnable {
                         + lingkaran.luasLingkaran + "," + lingkaran.kelilingLingkaran + ")";
 
                 System.out.printf("#%d Luas Lingkaran : %.2f\n", i, lingkaran.luasLingkaran);
-
                 System.out.printf("#%d Keliling Lingkaran : %.2f\n\n", i, lingkaran.kelilingLingkaran);
                 Thread.sleep(2000);
                 pst = con.prepareStatement(query);

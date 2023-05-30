@@ -32,7 +32,6 @@ public class JuringThread implements Runnable {
                 } else if (sudut < 0) {
                     throw new Exception("Sudut juring tidak boleh negatif");
                 }
-
                 isiFile = new RandomAccessFile("lingkaran.txt", "rw");
                 Long fileLength = isiFile.length();
                 isiFile.seek(fileLength);

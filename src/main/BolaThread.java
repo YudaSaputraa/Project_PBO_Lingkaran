@@ -48,7 +48,6 @@ public class BolaThread implements Runnable {
                 pst.execute();
                 con.close();
                 jariBola++;
-
             }
             System.out.println("-- DATA BOLA SELESAI DIBUAT --");
         } catch (Exception e) {

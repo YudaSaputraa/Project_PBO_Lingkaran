@@ -53,7 +53,6 @@ public class TemberengBolaThread implements Runnable {
                 Thread.sleep(2000);
                 pst = con.prepareStatement(query);
                 pst.execute();
-
                 con.close();
                 jariTembereng++;
                 jarakBidang++;

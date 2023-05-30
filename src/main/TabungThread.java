@@ -49,7 +49,6 @@ public class TabungThread implements Runnable {
                         + ","
                         + tinggi + "," + tabung.luasTabung + "," + tabung.volumeTabung + ")";
                 System.out.printf("#%d Luas Tabung : %.2f\n", i, tabung.luasTabung);
-
                 System.out.printf("#%d Keliling Tabung : %.2f\n\n", i, tabung.volumeTabung);
 
                 Thread.sleep(2000);

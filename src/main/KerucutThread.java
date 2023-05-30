@@ -32,7 +32,6 @@ public class KerucutThread implements Runnable {
                 } else if (tinggiKerucut < 0) {
                     throw new Exception("Tinggi kerucut tidak boleh negatif");
                 }
-
                 isiFile = new RandomAccessFile("lingkaran.txt", "rw");
                 Long fileLength = isiFile.length();
                 isiFile.seek(fileLength);

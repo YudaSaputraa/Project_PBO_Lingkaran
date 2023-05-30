@@ -44,7 +44,6 @@ public class KerucutTerpancungThread implements Runnable {
                 } else if (tinggiKTerpancung < 0) {
                     throw new Exception("Tinggi kerucut terpancung tidak boleh negatif");
                 }
-
                 isiFile = new RandomAccessFile("lingkaran.txt", "rw");
                 Long fileLength = isiFile.length();
                 isiFile.seek(fileLength);

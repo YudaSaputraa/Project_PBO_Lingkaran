@@ -61,7 +61,6 @@ public class KeratanBolaThread implements Runnable {
                 Thread.sleep(2000);
                 pst = con.prepareStatement(query);
                 pst.execute();
-
                 con.close();
                 jariAtas++;
                 jariBawah++;
