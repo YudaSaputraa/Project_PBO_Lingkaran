@@ -20,7 +20,9 @@ public class KerucutTerpancungThread implements Runnable {
         try {
             double jariBesar = 1;
             double jariKecil = 1;
+
             double tinggiKTerpancung = 1;
+
             for (int i = 1; i <= 24; i++) {
                 KerucutTerpancung kTerpancung = new KerucutTerpancung(jariBesar, tinggiKTerpancung, jariKecil);
                 kTerpancung.setR(jariBesar);
@@ -43,33 +45,37 @@ public class KerucutTerpancungThread implements Runnable {
                     throw new Exception("Tinggi kerucut terpancung tidak boleh negatif");
                 }
 
-                try {
-                    isiFile = new RandomAccessFile("lingkaran.txt", "rw");
-                    isiFile.seek(3000);
-                    isiFile.writeUTF("Kerucut Terpancung");
-                    isiFile.writeDouble(jariBesar);
-                    isiFile.writeDouble(jariKecil);
-                    isiFile.writeDouble(tinggiKTerpancung);
-                    isiFile.writeDouble(kTerpancung.hitungSelimutKerucut());
-                    isiFile.writeDouble(kTerpancung.hitungVolumeKerucut());
+                isiFile = new RandomAccessFile("lingkaran.txt", "rw");
+                Long fileLength = isiFile.length();
+                isiFile.seek(fileLength);
+                isiFile.writeUTF("Kerucut Terpancung\n");
+                isiFile.writeBytes("Jari jari Besar : " + Double.toString(jariBesar) + "\n");
+                isiFile.writeBytes("Jari jari kecil : " + Double.toString(jariKecil) + "\n");
+                isiFile.writeBytes("Tinggi Kerucut Terpancung : " + Double.toString(tinggiKTerpancung) + "\n");
+                isiFile.writeBytes(
+                        "Selimut Kerucut Terpancung : " + Double.toString(kTerpancung.hitungSelimutKerucut()) + "\n");
+                isiFile.writeBytes(
+                        "Volume Kerucut Terpancung : " + Double.toString(kTerpancung.hitungVolumeKerucut()) + "\n");
+                isiFile.close();
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = (Connection) DriverManager.getConnection(url, username, pass);
+                String query = "Insert into terpancung (jari_besar, jari_kecil, tinggi, luas_selimut, volume) values ("
+                        + jariBesar + "," + jariKecil + ","
+                        + tinggiKTerpancung + "," + kTerpancung.hitungSelimutKerucut() + ","
+                        + kTerpancung.hitungVolumeKerucut() + ")";
+                System.out.printf("#%d Selimut Kerucut Terpancung : %.2f\n", i, kTerpancung.hitungSelimutKerucut());
+                System.out.printf("#%d Volume Kerucut Terpancung : %.2f\n\n", i, kTerpancung.hitungVolumeKerucut());
+                Thread.sleep(2000);
+                pst = con.prepareStatement(query);
+                pst.execute();
 
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    con = (Connection) DriverManager.getConnection(url, username, pass);
-                    String query = "Insert into terpancung (jari_besar, jari_kecil, tinggi, luas_selimut, volume) values ("
-                            + jariBesar + "," + jariKecil + ","
-                            + tinggiKTerpancung + "," + kTerpancung.hitungSelimutKerucut() + ","
-                            + kTerpancung.hitungVolumeKerucut() + ")";
-                    pst = con.prepareStatement(query);
-                    pst.execute();
-                } catch (IOException ioe) {
-                    System.err.println(ioe.getMessage());
-                }
                 con.close();
                 jariBesar++;
 
                 jariKecil++;
 
                 tinggiKTerpancung++;
+
             }
             System.out.println("-- DATA KERUCUT TERPANCUNG SELESAI DIBUAT --");
         } catch (Exception e) {

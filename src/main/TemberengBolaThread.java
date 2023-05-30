@@ -20,6 +20,7 @@ public class TemberengBolaThread implements Runnable {
         try {
             double jariTembereng = 1;
             double jarakBidang = 1;
+
             for (int i = 1; i <= 24; i++) {
                 Tembereng tembereng = new Tembereng(jariTembereng, jarakBidang);
                 tembereng.setJrkBidang(jarakBidang);
@@ -32,27 +33,31 @@ public class TemberengBolaThread implements Runnable {
                     throw new Exception("jarak bidang tidak boleh negatif");
                 }
 
-                try {
-                    isiFile = new RandomAccessFile("lingkaran.txt", "rw");
-                    isiFile.seek(6000);
-                    isiFile.writeUTF("Tembereng Bola");
-                    isiFile.writeDouble(tembereng.getTheta());
-                    isiFile.writeDouble(tembereng.hitungLuasTemberengBola());
-                    isiFile.writeDouble(tembereng.hitungVolumeTemberengBola());
-                    con = (Connection) DriverManager.getConnection(url, username, pass);
-                    String query = "Insert into tembereng (jari_jari, jarak_bidang, luas, volume, tetha) values ("
-                            + jariTembereng + "," + jarakBidang + "," + tembereng.hitungLuasTemberengBola() + ","
-                            + tembereng.hitungVolumeTemberengBola() + ","
-                            + tembereng.getTheta() + ")";
-                    pst = con.prepareStatement(query);
-                    pst.execute();
+                isiFile = new RandomAccessFile("lingkaran.txt", "rw");
+                Long fileLength = isiFile.length();
+                isiFile.seek(fileLength);
+                isiFile.writeUTF("Tembereng Bola\n");
+                isiFile.writeBytes("Theta : " + Double.toString(tembereng.getTheta()) + "\n");
+                isiFile.writeBytes(
+                        "Luas Tembereng Bola : " + Double.toString(tembereng.hitungLuasTemberengBola()) + "\n");
+                isiFile.writeBytes(
+                        "Volume Tembereng Bola : " + Double.toString(tembereng.hitungVolumeTemberengBola()) + "\n\n");
+                isiFile.close();
+                con = (Connection) DriverManager.getConnection(url, username, pass);
+                String query = "Insert into tembereng (jari_jari, jarak_bidang, luas, volume, tetha) values ("
+                        + jariTembereng + "," + jarakBidang + "," + tembereng.hitungLuasTemberengBola() + ","
+                        + tembereng.hitungVolumeTemberengBola() + ","
+                        + tembereng.getTheta() + ")";
+                System.out.printf("#%d Luas Tembereng Bola : %.2f\n", i, tembereng.hitungLuasTemberengBola());
+                System.out.printf("#%d Volume Tembereng Bola : %.2f\n\n", i, tembereng.hitungVolumeTemberengBola());
+                Thread.sleep(2000);
+                pst = con.prepareStatement(query);
+                pst.execute();
 
-                } catch (IOException ioe) {
-                    System.err.println(ioe.getMessage());
-                }
                 con.close();
                 jariTembereng++;
                 jarakBidang++;
+
             }
             System.out.println("-- DATA TEMBERENG BOLA SELESAI DIBUAT --");
         } catch (Exception e) {

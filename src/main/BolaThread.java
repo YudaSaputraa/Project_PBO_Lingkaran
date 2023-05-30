@@ -20,32 +20,35 @@ public class BolaThread implements Runnable {
         System.out.println("Thread BOLA dijalankan....");
         try {
             double jariBola = 1;
+
             for (int i = 1; i <= 24; i++) {
                 Lingkaran bola = new Bola(jariBola);
                 bola.setR(jariBola);
                 if (jariBola < 0) {
                     throw new Exception("Jari bola tidak boleh negatif");
                 }
-                try {
-                    isiFile = new RandomAccessFile("lingkaran.txt", "rw");
-                    isiFile.seek(4000);
-                    isiFile.writeUTF("Bola");
-                    isiFile.writeDouble(jariBola);
-                    isiFile.writeDouble(bola.luasBola);
-                    isiFile.writeDouble(bola.volumeBola);
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    con = (Connection) DriverManager.getConnection(url, username, pass);
-                    String query = "Insert into bola (jar_jari, luas, volume) values ("
-                            + jariBola + "," + bola.luasBola + ","
-                            + bola.volumeBola + ")";
-                    pst = con.prepareStatement(query);
-                    pst.execute();
 
-                } catch (IOException ioe) {
-                    System.err.println(ioe.getMessage());
-                }
+                isiFile = new RandomAccessFile("lingkaran.txt", "rw");
+                Long fileLength = isiFile.length();
+                isiFile.seek(fileLength);
+                isiFile.writeUTF("Bola\n");
+                isiFile.writeBytes("Jari Jari Bola : " + Double.toString(jariBola) + "\n");
+                isiFile.writeBytes("Luas Bola : " + Double.toString(bola.luasBola) + "\n");
+                isiFile.writeBytes("Volume Bola : " + Double.toString(bola.volumeBola) + "\n\n");
+                isiFile.close();
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = (Connection) DriverManager.getConnection(url, username, pass);
+                String query = "Insert into bola (jar_jari, luas, volume) values ("
+                        + jariBola + "," + bola.luasBola + ","
+                        + bola.volumeBola + ")";
+                System.out.printf("#%d Luas Bola : %.2f\n", i, bola.luasBola);
+                System.out.printf("#%d Volume Bola: %.2f\n\n", i, bola.volumeBola);
+                Thread.sleep(2000);
+                pst = con.prepareStatement(query);
+                pst.execute();
                 con.close();
                 jariBola++;
+
             }
             System.out.println("-- DATA BOLA SELESAI DIBUAT --");
         } catch (Exception e) {

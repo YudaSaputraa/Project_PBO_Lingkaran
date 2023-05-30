@@ -21,7 +21,8 @@ public class TabungThread implements Runnable {
         try {
             double jariAlasTabung = 1;
             double tinggi = 1;
-            for (int i = 1; i <= 24; i++) {
+
+            for (int i = 1; i <= 10; i++) {
 
                 Lingkaran tabung = new Tabung(jariAlasTabung, tinggi);
                 tabung.setR(jariAlasTabung);
@@ -33,27 +34,32 @@ public class TabungThread implements Runnable {
                     throw new Exception("Tinggi tabung tidak boleh negatif");
                 }
 
-                try {
-                    isiFile = new RandomAccessFile("lingkaran.txt", "rw");
-                    isiFile.seek(1000);
-                    isiFile.writeUTF("Tabung");
-                    isiFile.writeDouble(jariAlasTabung);
-                    isiFile.writeDouble(tinggi);
-                    isiFile.writeDouble(tabung.luasTabung);
-                    isiFile.writeDouble(tabung.volumeTabung);
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    con = (Connection) DriverManager.getConnection(url, username, pass);
-                    String query = "Insert into tabung (jari_jari, tinggi,luas_alas, volume) values (" + jariAlasTabung
-                            + ","
-                            + tinggi + "," + tabung.luasTabung + "," + tabung.volumeTabung + ")";
-                    pst = con.prepareStatement(query);
-                    pst.execute();
-                } catch (IOException ioe) {
-                    System.err.println(ioe.getMessage());
-                }
+                isiFile = new RandomAccessFile("lingkaran.txt", "rw");
+                Long fileLength = isiFile.length();
+                isiFile.seek(fileLength);
+                isiFile.writeUTF("Tabung\n");
+                isiFile.writeBytes("Jari Alas Tabung : " + Double.toString(jariAlasTabung) + "\n");
+                isiFile.writeBytes("Tinggi : " + Double.toString(tinggi) + "\n");
+                isiFile.writeBytes("Luas Tabung : " + Double.toString(tabung.luasTabung) + "\n");
+                isiFile.writeBytes("Volume Tabung : " + Double.toString(tabung.volumeTabung) + "\n\n");
+                isiFile.close();
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = (Connection) DriverManager.getConnection(url, username, pass);
+                String query = "Insert into tabung (jari_jari, tinggi,luas_alas, volume) values (" + jariAlasTabung
+                        + ","
+                        + tinggi + "," + tabung.luasTabung + "," + tabung.volumeTabung + ")";
+                System.out.printf("#%d Luas Tabung : %.2f\n", i, tabung.luasTabung);
+
+                System.out.printf("#%d Keliling Tabung : %.2f\n\n", i, tabung.volumeTabung);
+
+                Thread.sleep(2000);
+                pst = con.prepareStatement(query);
+                pst.execute();
+
                 con.close();
                 jariAlasTabung++;
                 tinggi++;
+
             }
             System.out.println("-- DATA TABUNG SELESAI DIBUAT --");
         } catch (Exception e) {

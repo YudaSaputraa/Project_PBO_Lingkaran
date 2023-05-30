@@ -20,6 +20,7 @@ public class JuringThread implements Runnable {
         try {
             double jariJuring = 1;
             double sudut = 1;
+
             for (int i = 1; i <= 24; i++) {
                 Juring juring = new Juring(jariJuring, sudut);
                 juring.setR(jariJuring);
@@ -32,26 +33,28 @@ public class JuringThread implements Runnable {
                     throw new Exception("Sudut juring tidak boleh negatif");
                 }
 
-                try {
-                    isiFile = new RandomAccessFile("lingkaran.txt", "rw");
-                    isiFile.seek(5000);
-                    isiFile.writeUTF("Juring Bola");
-                    isiFile.writeDouble(juring.getTheta());
-                    isiFile.writeDouble(juring.hitungLuasJuring());
-                    isiFile.writeDouble(juring.hitungVolumeJuring());
-                    con = (Connection) DriverManager.getConnection(url, username, pass);
-                    String query = "Insert into juring (jari_jari, luas, volume, tetha) values ("
-                            + jariJuring + "," + juring.hitungLuasJuring() + "," + juring.hitungVolumeJuring() + ","
-                            + juring.getTheta() + ")";
-                    pst = con.prepareStatement(query);
-                    pst.execute();
+                isiFile = new RandomAccessFile("lingkaran.txt", "rw");
+                Long fileLength = isiFile.length();
+                isiFile.seek(fileLength);
+                isiFile.writeUTF("Juring Bola\n");
+                isiFile.writeBytes("Theta : " + Double.toString(juring.getTheta()) + "\n");
+                isiFile.writeBytes("Luas Juring : " + Double.toString(juring.hitungLuasJuring()) + "\n");
+                isiFile.writeBytes("Volume Juring : " + Double.toString(juring.hitungVolumeJuring()) + "\n\n");
+                isiFile.close();
+                con = (Connection) DriverManager.getConnection(url, username, pass);
+                String query = "Insert into juring (jari_jari, luas, volume, tetha) values ("
+                        + jariJuring + "," + juring.hitungLuasJuring() + "," + juring.hitungVolumeJuring() + ","
+                        + juring.getTheta() + ")";
+                System.out.printf("#%d Luas Juring : %.2f\n", i, juring.hitungLuasJuring());
+                System.out.printf("#%d Volume Juring : %.2f\n\n", i, juring.hitungVolumeJuring());
+                Thread.sleep(2000);
+                pst = con.prepareStatement(query);
+                pst.execute();
 
-                } catch (IOException ioe) {
-                    System.err.println(ioe.getMessage());
-                }
                 con.close();
                 jariJuring++;
                 sudut++;
+
             }
             System.out.println("-- DATA JURING BOLA SELESAI DIBUAT --");
 

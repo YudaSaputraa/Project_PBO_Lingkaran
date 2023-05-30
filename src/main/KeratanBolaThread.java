@@ -21,6 +21,7 @@ public class KeratanBolaThread implements Runnable {
             double jariAtas = 1;
             double jariBawah = 1;
             double tinggiKeratan = 1;
+
             for (int i = 1; i <= 24; i++) {
                 Keratan keratan = new Keratan(jariBawah, jariAtas, tinggiKeratan);
                 keratan.setR(jariBawah);
@@ -42,27 +43,30 @@ public class KeratanBolaThread implements Runnable {
                     throw new Exception("Tinggi keratan bola tidak boleh negatif");
                 }
 
-                try {
-                    isiFile = new RandomAccessFile("lingkaran.txt", "rw");
-                    isiFile.seek(7000);
-                    isiFile.writeUTF("Keratan Bola");
-                    isiFile.writeDouble(keratan.hitungLuasKeratanBola());
-                    isiFile.writeDouble(keratan.hitungVolumeKeratanBola());
-                    con = (Connection) DriverManager.getConnection(url, username, pass);
-                    String query = "Insert into keratan (jari_atas, jari_bawah, tinggi, volume, luas) values ("
-                            + jariAtas + "," + jariBawah + "," + tinggiKeratan + ","
-                            + keratan.hitungVolumeKeratanBola() + ","
-                            + keratan.hitungLuasKeratanBola() + ")";
-                    pst = con.prepareStatement(query);
-                    pst.execute();
+                isiFile = new RandomAccessFile("lingkaran.txt", "rw");
+                Long fileLength = isiFile.length();
+                isiFile.seek(fileLength);
+                isiFile.writeUTF("Keratan Bola\n");
+                isiFile.writeBytes("Luas Keratan Bola : " + Double.toString(keratan.hitungLuasKeratanBola()) + "\n");
+                isiFile.writeBytes(
+                        "Volume Keratan Bola : " + Double.toString(keratan.hitungVolumeKeratanBola()) + "\n\n");
+                isiFile.close();
+                con = (Connection) DriverManager.getConnection(url, username, pass);
+                String query = "Insert into keratan (jari_atas, jari_bawah, tinggi, volume, luas) values ("
+                        + jariAtas + "," + jariBawah + "," + tinggiKeratan + ","
+                        + keratan.hitungVolumeKeratanBola() + ","
+                        + keratan.hitungLuasKeratanBola() + ")";
+                System.out.printf("#%d Luas Keratan Bola : %.2f\n", i, keratan.hitungLuasKeratanBola());
+                System.out.printf("#%d Volume Keratan Bola : %.2f\n\n", i, keratan.hitungVolumeKeratanBola());
+                Thread.sleep(2000);
+                pst = con.prepareStatement(query);
+                pst.execute();
 
-                } catch (IOException ioe) {
-                    System.err.println(ioe.getMessage());
-                }
                 con.close();
                 jariAtas++;
                 jariBawah++;
                 tinggiKeratan++;
+
             }
             System.out.println("-- DATA KERATAN BOLA SELESAI DIBUAT --");
         } catch (Exception e) {
