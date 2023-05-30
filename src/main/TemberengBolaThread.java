@@ -18,10 +18,11 @@ public class TemberengBolaThread implements Runnable {
     public void run() {
         System.out.println("Thread TEMBERENG BOLA dijalankan....");
         try {
+            Thread.currentThread().setName("Tembereng Bola Thread-");
             double jariTembereng = 1;
             double jarakBidang = 1;
 
-            for (int i = 1; i <= 24; i++) {
+            for (int i = 1; i <= 10; i++) {
                 Tembereng tembereng = new Tembereng(jariTembereng, jarakBidang);
                 tembereng.setJrkBidang(jarakBidang);
                 tembereng.setR(jariTembereng);
@@ -48,9 +49,12 @@ public class TemberengBolaThread implements Runnable {
                         + jariTembereng + "," + jarakBidang + "," + tembereng.hitungLuasTemberengBola() + ","
                         + tembereng.hitungVolumeTemberengBola() + ","
                         + tembereng.getTheta() + ")";
-                System.out.printf("#%d Luas Tembereng Bola : %.2f\n", i, tembereng.hitungLuasTemberengBola());
-                System.out.printf("#%d Volume Tembereng Bola : %.2f\n\n", i, tembereng.hitungVolumeTemberengBola());
-                Thread.sleep(2000);
+
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(Thread.currentThread().getName() + "#" + i + "\n" + "Luas Tembereng Bola : %.2f\n",
+                        tembereng.hitungLuasTemberengBola());
+                System.out.printf("Volume Tembereng Bola : %.2f\n\n", tembereng.hitungVolumeTemberengBola());
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
                 con.close();

@@ -17,8 +17,9 @@ public class LingkaranThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Thread LINGKARAN dijalnkan....");
+        System.out.println("Thread LINGKARAN dijalankan....");
         try {
+            Thread.currentThread().setName("Lingkaran Thread-");
             // System.out.print("Input Jari - Jari Lingkaran : ");
             double jariJari = 1;
             int i;
@@ -45,9 +46,11 @@ public class LingkaranThread implements Runnable {
                 String query = "Insert into lingkaran (jari_jari, luas, keliling) values (" + jariJari + ","
                         + lingkaran.luasLingkaran + "," + lingkaran.kelilingLingkaran + ")";
 
-                System.out.printf("#%d Luas Lingkaran : %.2f\n", i, lingkaran.luasLingkaran);
-                System.out.printf("#%d Keliling Lingkaran : %.2f\n\n", i, lingkaran.kelilingLingkaran);
-                Thread.sleep(2000);
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(Thread.currentThread().getName() + "#" + i + "\n" + "Luas Lingkaran : %.2f\n",
+                        lingkaran.luasLingkaran);
+                System.out.printf("Keliling Lingkaran : %.2f\n\n", lingkaran.kelilingLingkaran);
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
 

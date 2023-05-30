@@ -18,11 +18,12 @@ public class KeratanBolaThread implements Runnable {
     public void run() {
         System.out.println("Thread KERATAN BOLA dijalankan....");
         try {
+            Thread.currentThread().setName("Keratan Bola Thread-");
             double jariAtas = 1;
             double jariBawah = 1;
             double tinggiKeratan = 1;
 
-            for (int i = 1; i <= 24; i++) {
+            for (int i = 1; i <= 10; i++) {
                 Keratan keratan = new Keratan(jariBawah, jariAtas, tinggiKeratan);
                 keratan.setR(jariBawah);
                 keratan.setrAtas(jariAtas);
@@ -56,9 +57,12 @@ public class KeratanBolaThread implements Runnable {
                         + jariAtas + "," + jariBawah + "," + tinggiKeratan + ","
                         + keratan.hitungVolumeKeratanBola() + ","
                         + keratan.hitungLuasKeratanBola() + ")";
-                System.out.printf("#%d Luas Keratan Bola : %.2f\n", i, keratan.hitungLuasKeratanBola());
-                System.out.printf("#%d Volume Keratan Bola : %.2f\n\n", i, keratan.hitungVolumeKeratanBola());
-                Thread.sleep(2000);
+
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(Thread.currentThread().getName() + "#" + i + "\n" + "Luas Keratan Bola : %.2f\n",
+                        keratan.hitungLuasKeratanBola());
+                System.out.printf("Volume Keratan Bola : %.2f\n\n", keratan.hitungVolumeKeratanBola());
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
                 con.close();

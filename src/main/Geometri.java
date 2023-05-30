@@ -13,8 +13,17 @@ public class Geometri {
         threads[5] = new Thread(new JuringThread());
         threads[6] = new Thread(new TemberengBolaThread());
         threads[7] = new Thread(new KeratanBolaThread());
+
         for (Thread thread : threads) {
             thread.start();
+        }
+
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

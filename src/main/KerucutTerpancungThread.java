@@ -18,12 +18,13 @@ public class KerucutTerpancungThread implements Runnable {
     public void run() {
         System.out.println("Thread KERUCUT TERPANCUNG dijalankan....");
         try {
+            Thread.currentThread().setName("Kerucut Terpancung Thread-");
             double jariBesar = 1;
             double jariKecil = 1;
 
             double tinggiKTerpancung = 1;
 
-            for (int i = 1; i <= 24; i++) {
+            for (int i = 1; i <= 10; i++) {
                 KerucutTerpancung kTerpancung = new KerucutTerpancung(jariBesar, tinggiKTerpancung, jariKecil);
                 kTerpancung.setR(jariBesar);
                 kTerpancung.setTinggi(tinggiKTerpancung);
@@ -62,9 +63,13 @@ public class KerucutTerpancungThread implements Runnable {
                         + jariBesar + "," + jariKecil + ","
                         + tinggiKTerpancung + "," + kTerpancung.hitungSelimutKerucut() + ","
                         + kTerpancung.hitungVolumeKerucut() + ")";
-                System.out.printf("#%d Selimut Kerucut Terpancung : %.2f\n", i, kTerpancung.hitungSelimutKerucut());
-                System.out.printf("#%d Volume Kerucut Terpancung : %.2f\n\n", i, kTerpancung.hitungVolumeKerucut());
-                Thread.sleep(2000);
+
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(
+                        Thread.currentThread().getName() + "#" + i + "\n" + "Selimut Kerucut Terpancung : %.2f\n",
+                        kTerpancung.hitungSelimutKerucut());
+                System.out.printf("Volume Kerucut Terpancung : %.2f\n\n", kTerpancung.hitungVolumeKerucut());
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
 

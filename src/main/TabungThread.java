@@ -19,6 +19,7 @@ public class TabungThread implements Runnable {
     public void run() {
         System.out.println("Thread TABUNG dijalankan....");
         try {
+            Thread.currentThread().setName("Tabung Thread-");
             double jariAlasTabung = 1;
             double tinggi = 1;
 
@@ -48,10 +49,11 @@ public class TabungThread implements Runnable {
                 String query = "Insert into tabung (jari_jari, tinggi,luas_alas, volume) values (" + jariAlasTabung
                         + ","
                         + tinggi + "," + tabung.luasTabung + "," + tabung.volumeTabung + ")";
-                System.out.printf("#%d Luas Tabung : %.2f\n", i, tabung.luasTabung);
-                System.out.printf("#%d Keliling Tabung : %.2f\n\n", i, tabung.volumeTabung);
-
-                Thread.sleep(2000);
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(Thread.currentThread().getName() + "#" + i + "\n" + "Luas Tabung : %.2f\n",
+                        tabung.luasTabung);
+                System.out.printf("Keliling Tabung : %.2f\n\n", tabung.volumeTabung);
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
 

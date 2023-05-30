@@ -19,10 +19,11 @@ public class KerucutThread implements Runnable {
     public void run() {
         System.out.println("Thread KERUCUT dijalankan....");
         try {
+            Thread.currentThread().setName("Kerucut Thread-");
             double jariAlasKerucut = 1;
             double tinggiKerucut = 1;
 
-            for (int i = 1; i <= 24; i++) {
+            for (int i = 1; i <= 10; i++) {
                 Lingkaran kerucut = new Kerucut(jariAlasKerucut, tinggiKerucut);
                 kerucut.setR(jariAlasKerucut);
                 if (jariAlasKerucut < 0 && tinggiKerucut < 0) {
@@ -47,11 +48,12 @@ public class KerucutThread implements Runnable {
                         + jariAlasKerucut
                         + ","
                         + tinggiKerucut + "," + kerucut.luasKerucut + "," + kerucut.volumeKerucut + ")";
-                System.out.printf("#%d Luas Kerucut : %.2f\n", i, kerucut.luasKerucut);
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(Thread.currentThread().getName() + "#" + i + "\n" + "Luas Kerucut : %.2f\n",
+                        kerucut.luasKerucut);
+                System.out.printf("Volume Kerucut : %.2f\n\n", kerucut.volumeKerucut);
 
-                System.out.printf("#%d Volume Kerucut : %.2f\n\n", i, kerucut.volumeKerucut);
-
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
 

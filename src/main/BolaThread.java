@@ -19,9 +19,10 @@ public class BolaThread implements Runnable {
     public void run() {
         System.out.println("Thread BOLA dijalankan....");
         try {
+            Thread.currentThread().setName("Bola Thread-");
             double jariBola = 1;
 
-            for (int i = 1; i <= 24; i++) {
+            for (int i = 1; i <= 10; i++) {
                 Lingkaran bola = new Bola(jariBola);
                 bola.setR(jariBola);
                 if (jariBola < 0) {
@@ -41,9 +42,12 @@ public class BolaThread implements Runnable {
                 String query = "Insert into bola (jar_jari, luas, volume) values ("
                         + jariBola + "," + bola.luasBola + ","
                         + bola.volumeBola + ")";
-                System.out.printf("#%d Luas Bola : %.2f\n", i, bola.luasBola);
-                System.out.printf("#%d Volume Bola: %.2f\n\n", i, bola.volumeBola);
-                Thread.sleep(2000);
+
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(Thread.currentThread().getName() + "#" + i + "\n" + "Luas Bola : %.2f\n",
+                        bola.luasBola);
+                System.out.printf("Volume Bola: %.2f\n\n", bola.volumeBola);
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
                 con.close();

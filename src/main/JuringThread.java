@@ -18,10 +18,11 @@ public class JuringThread implements Runnable {
     public void run() {
         System.out.println("Thread JURING BOLA dijalankan....");
         try {
+            Thread.currentThread().setName("Juring Bola Thread-");
             double jariJuring = 1;
             double sudut = 1;
 
-            for (int i = 1; i <= 24; i++) {
+            for (int i = 1; i <= 10; i++) {
                 Juring juring = new Juring(jariJuring, sudut);
                 juring.setR(jariJuring);
                 juring.setSudut(sudut);
@@ -44,9 +45,12 @@ public class JuringThread implements Runnable {
                 String query = "Insert into juring (jari_jari, luas, volume, tetha) values ("
                         + jariJuring + "," + juring.hitungLuasJuring() + "," + juring.hitungVolumeJuring() + ","
                         + juring.getTheta() + ")";
-                System.out.printf("#%d Luas Juring : %.2f\n", i, juring.hitungLuasJuring());
-                System.out.printf("#%d Volume Juring : %.2f\n\n", i, juring.hitungVolumeJuring());
-                Thread.sleep(2000);
+
+                // System.out.println(Thread.currentThread().getName() + "#" + i);
+                System.out.printf(Thread.currentThread().getName() + "#" + i + "\n" + "Luas Juring : %.2f\n",
+                        juring.hitungLuasJuring());
+                System.out.printf("Volume Juring : %.2f\n\n", juring.hitungVolumeJuring());
+                Thread.sleep(1000);
                 pst = con.prepareStatement(query);
                 pst.execute();
 
